@@ -68,6 +68,7 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
 
   private static final int FOCUS_TEXT_INPUT = 1;
   private static final int BLUR_TEXT_INPUT = 2;
+  private static final int HIDE_KEYBOARD = 3;
 
   private static final int INPUT_TYPE_KEYBOARD_NUMBER_PAD = InputType.TYPE_CLASS_NUMBER; 
   private static final int INPUT_TYPE_KEYBOARD_DECIMAL_PAD = INPUT_TYPE_KEYBOARD_NUMBER_PAD |
@@ -165,7 +166,11 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
 
   @Override
   public @Nullable Map<String, Integer> getCommandsMap() {
-    return MapBuilder.of("focusTextInput", FOCUS_TEXT_INPUT, "blurTextInput", BLUR_TEXT_INPUT);
+    return MapBuilder.of(
+      "focusTextInput", FOCUS_TEXT_INPUT, 
+      "blurTextInput", BLUR_TEXT_INPUT,
+      "hideKeyboard", HIDE_KEYBOARD
+    );
   }
 
   @Override
@@ -179,6 +184,9 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
         break;
       case BLUR_TEXT_INPUT:
         reactEditText.clearFocusFromJS();
+        break;
+      case HIDE_KEYBOARD:
+        reactEditText.hideKeyboardFromJS();
         break;
     }
   }

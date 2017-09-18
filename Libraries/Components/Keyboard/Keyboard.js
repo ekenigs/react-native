@@ -15,6 +15,7 @@ const invariant = require('fbjs/lib/invariant');
 const NativeEventEmitter = require('NativeEventEmitter');
 const KeyboardObserver = require('NativeModules').KeyboardObserver;
 const dismissKeyboard = require('dismissKeyboard');
+const hideKeyboard = require('hideKeyboard');
 const KeyboardEventEmitter = new NativeEventEmitter(KeyboardObserver);
 
 type KeyboardEventName =
@@ -142,6 +143,13 @@ let Keyboard = {
   },
 
   /**
+   * Hides the active keyboard.
+   */
+  hide() {
+    invariant(false, 'Dummy method used for documentation');
+  },
+
+  /**
    * Useful for syncing TextInput (or other keyboard accessory view) size of
    * position changes with keyboard movements.
    */
@@ -153,6 +161,7 @@ let Keyboard = {
 // Throw away the dummy object and reassign it to original module
 Keyboard = KeyboardEventEmitter;
 Keyboard.dismiss = dismissKeyboard;
+Keyboard.hide = hideKeyboard;
 Keyboard.scheduleLayoutAnimation = function(event: KeyboardEvent) {
   const {duration, easing} = event;
   if (duration) {

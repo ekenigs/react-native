@@ -69,6 +69,21 @@ function blurTextInput(textFieldID: ?number) {
   }
 }
 
+/**
+ * @param {number} textFieldID id of the text field
+ * Hides keyboard
+ * Works only for android
+ */
+function hideKeyboard(textFieldID: ?number) {
+  if (textFieldID !== null && Platform.OS === 'android') {
+    UIManager.dispatchViewManagerCommand(
+      textFieldID,
+      UIManager.AndroidTextInput.Commands.hideKeyboard,
+      null,
+    );
+  }
+}
+
 function registerInput(textFieldID: number) {
   inputs.add(textFieldID);
 }
@@ -85,6 +100,7 @@ module.exports = {
   currentlyFocusedField,
   focusTextInput,
   blurTextInput,
+  hideKeyboard,
   registerInput,
   unregisterInput,
   isTextInput,

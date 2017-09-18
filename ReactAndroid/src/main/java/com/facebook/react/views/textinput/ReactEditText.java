@@ -349,6 +349,10 @@ public class ReactEditText extends EditText {
     clearFocus();
   }
 
+  public void hideKeyboardFromJS() {
+    hideSoftKeyboard();
+  }
+
   // VisibleForTesting from {@link TextInputEventsTestCase}.
   public int incrementAndGetEventCounter() {
     return ++mNativeEventCount;
